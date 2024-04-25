@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class Index {
     @GetMapping("/")
-    public String getMethodName() {
+    public String Index() {
         return new String("This is View for Index");
     }
     
