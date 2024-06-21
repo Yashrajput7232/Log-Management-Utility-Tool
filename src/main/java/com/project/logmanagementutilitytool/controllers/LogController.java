@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.logmanagementutilitytool.Service.LogService;
+import com.project.logmanagementutilitytool.entity.LogEntity;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class LogController {
     private LogService logService;
 
     @GetMapping
-    public ResponseEntity<List<Log>> getAllLogs() {
-        List<Log> logs = logService.getAllLogs();
+    public ResponseEntity<List<LogEntity>> getAllLogs() {
+        List<LogEntity> logs = logService.getAllLogs();
         if (logs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
