@@ -18,4 +18,8 @@ public class LogService {
     public List<LogEntity> getAllLogs() {
         return logRepository.findAll();
     }
+
+    public List<LogEntity> getLogsByDateAndMessage(String startDate, String endDate, String message) {
+        return logRepository.findByDateAndMessage(startDate, endDate, message);
+    }
 }
