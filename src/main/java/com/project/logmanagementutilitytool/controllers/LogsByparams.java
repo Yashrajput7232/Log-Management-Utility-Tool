@@ -21,9 +21,15 @@ public class LogsByparams {
 
     @GetMapping
     public  ResponseEntity<List<LogEntity>> getLogsByDateAndMessage(String startDate, String endDate, String message) {
-        List<LogEntity> logs = logService.getLogsByDateAndMessage(startDate, endDate, message);
-        if (logs.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        List<LogEntity> logs;
+        if (startDate == null || endDate == null || message == null) {
+            logs = logService.getAllLogs();
+        }
+        else {
+            logs = logService.getLogsByDateAndMessage(startDate, endDate, message);
+            if (logs.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         }
         return new ResponseEntity<>(logs, HttpStatus.OK);
     }

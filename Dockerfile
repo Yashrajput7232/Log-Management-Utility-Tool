@@ -17,8 +17,7 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the application
-RUN mvn package -DskipTests
-
+RUN mvn package -DskipTests && ls /app/target
 # Use a lightweight base image
 FROM openjdk:17-jdk-slim
 
@@ -26,7 +25,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the build stage to the container
-COPY --from=build /app/target/your-spring-boot-app.jar ./app.jar
+# COPY --from=build /app/target/your-spring-boot-app.jar ./app.jar
 
 # Specify the command to run on container start
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "", "app.jar"]
