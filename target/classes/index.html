@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Query Interface</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/a11y-dark.min.css">
+    <style>
+        body {
+            background-color: #272727;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        form {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        }
+
+        label {
+        width: 1000px;
+        margin-bottom: 10px; /* Add margin to create space between labels */
+        color: #04beec;
+        display: inline-block;
+         }
+
+        input {
+            flex: 1;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #04beec;
+            border-radius: 3px;
+            background-color: #333;
+            color: #aeceb3;
+            margin-right: 1px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #04beec;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0adb11
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #04ec10;
+            border-radius: 5px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #888;
+        }
+    </style>
+     
+</head>
+<body>
+    <h1>Log Query Interface</h1>
+    <form action="/search" method="get" id="searchForm">
+
+    <label for="level">Level:</label>
+    <input type="text" name="level" id="level" value="{{ query_params.get('level', '') }}">
+
+    <label for="message">Message:</label>
+    <input type="text" name="message" id="message" value="{{ query_params.get('message', '') }}">
+
+    <label for="resourceId">Resource ID:</label>
+    <input type="text" name="resourceId" id="resourceId" value="{{ query_params.get('resourceId', '') }}">
+
+    <label for="start_date">Start Date:</label>
+    <input type="text" name="start_date" id="start_date" placeholder="YYYY-MM-DDTHH:mm:ssZ" value="{{ query_params.get('start_date', '') }}">
+
+    <label for="end_date">End Date:</label>
+    <input type="text" name="end_date" id="end_date" placeholder="YYYY-MM-DDTHH:mm:ssZ" value="{{ query_params.get('end_date', '') }}">
+
+    <label for="traceId">Trace ID:</label>
+    <input type="text" name="traceId" id="traceId" value="{{ query_params.get('traceId', '') }}">
+
+    <label for="spanId">Span ID:</label>
+    <input type="text" name="spanId" id="spanId" value="{{ query_params.get('spanId', '') }}">
+
+    <label for="commit">Commit:</label>
+    <input type="text" name="commit" id="commit" value="{{ query_params.get('commit', '') }}">
+
+    <label for="parentResourceId">Parent Resource ID:</label>
+    <input type="text" name="metadata.parentResourceId" id="parentResourceId" value="{{ query_params.get('parentResourceId', '') }}">
+
+    <button type="submit">Search</button>
+
+</form>
+
+    {% if logs %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for log in logs %}
+                <li>
+                    <strong>Level:</strong> {{ log.level }}<br>
+                    <strong>Message:</strong> {{ log.message }}<br>
+                    <strong>Resource ID:</strong> {{ log.resourceId }}<br>
+                    <strong>Timestamp:</strong> {{ log.timestamp }}<br>
+                    <strong>Trace ID:</strong> {{ log.traceId }}<br>
+                    <strong>Span ID:</strong> {{ log.spanId }}<br>
+                    <strong>Commit:</strong> {{ log.commit }}<br>
+                    <strong>Parent Resource ID:</strong> {{ log.metadata.parentResourceId }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No logs found for the specified query.</p>
+    {% endif %}        
+
+
+    {% if errors %}
+        {% for error in errors %}
+        <li style="border: 1px solid #ec0404;">
+            <strong>ERROR : </strong> {{ error }}<br>
+        </li>
+            
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
