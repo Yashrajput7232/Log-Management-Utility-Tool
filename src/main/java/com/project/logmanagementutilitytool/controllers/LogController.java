@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.logmanagementutilitytool.Service.LogService;
 import com.project.logmanagementutilitytool.entity.LogEntity;
@@ -20,7 +18,7 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<LogEntity>> getAllLogs() {
         List<LogEntity> logs = logService.getAllLogs();
         if (logs.isEmpty()) {
@@ -28,4 +26,11 @@ public class LogController {
         }
         return new ResponseEntity<>(logs, HttpStatus.OK);
     }
+
+    @PostMapping("/addlogs")
+    public ResponseEntity<?> addLogs( @RequestBody LogEntity logEntity) {
+        System.out.println(logEntity);
+        return logService.addLogs(logEntity);
+    }
+
 }
