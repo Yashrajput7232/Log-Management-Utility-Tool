@@ -1,3 +1,4 @@
+# Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-jdk-slim AS build
 
 # Install Maven
@@ -17,7 +18,8 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the application
-RUN mvn package -DskipTests && ls /app/target
+RUN mvn package -DskipTests
+
 # Use a lightweight base image
 FROM openjdk:17-jdk-slim
 
@@ -25,7 +27,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the build stage to the container
-# COPY --from=build /app/target/your-spring-boot-app.jar ./app.jar
+COPY --from=build /app/target/*.jar ./app.jar
 
 # Specify the command to run on container start
-CMD ["java", "", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
