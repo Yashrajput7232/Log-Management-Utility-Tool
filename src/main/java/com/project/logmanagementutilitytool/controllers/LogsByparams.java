@@ -28,15 +28,19 @@ public class LogsByparams {
     public ResponseEntity<List<LogEntity>> getLogsByDateAndMessage(
             @RequestParam(required = false) String startDate,
             @RequestParam(required = false) String endDate,
-            @RequestParam(required = false) String message) {
+            @RequestParam(required = false) String message,
+            @RequestParam(required = false) String level,
+            @RequestParam(required = false) String resourceId,
+            @RequestParam(required = false) String traceId,
+            @RequestParam(required = false) String spanId,
+            @RequestParam(required = false) String commit,
+            @RequestParam(required = false) String metadata) {
 
-        LOGGER.info("Received request with startDate: {}, endDate: {}, message: {}", startDate, endDate, message);
+        LOGGER.info("Received request with "+ startDate, endDate, message , level, resourceId, traceId, spanId, commit, metadata);
 
         List<LogEntity> logs;
-        if (startDate == null || endDate == null || message == null) {
-            logs = logService.getAllLogs();
-        } else {
-            logs = logService.getLogsByDateAndMessage(startDate, endDate, message);
+         {
+            logs = logService.getLogsByParams(startDate, endDate, message , level, resourceId, traceId, spanId, commit, metadata);
             if (logs.isEmpty()) {
                 LOGGER.warn("No logs found for the given parameters.");
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
