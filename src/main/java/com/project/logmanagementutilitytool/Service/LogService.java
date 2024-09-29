@@ -1,6 +1,4 @@
 package com.project.logmanagementutilitytool.Service;
-
-import ch.qos.logback.classic.Logger;
 import com.project.logmanagementutilitytool.controllers.LogsByparams;
 import com.project.logmanagementutilitytool.entity.LogEntity;
 import org.slf4j.LoggerFactory;
