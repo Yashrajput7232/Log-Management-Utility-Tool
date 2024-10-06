@@ -13,7 +13,7 @@ import com.project.logmanagementutilitytool.Service.LogService;
 import com.project.logmanagementutilitytool.entity.LogEntity;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/logs")
 public class LogController {
