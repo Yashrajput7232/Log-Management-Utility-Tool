@@ -29,5 +29,7 @@ WORKDIR /app
 # Copy the JAR file from the build stage to the container
 COPY --from=build /app/target/*.jar ./app.jar
 
+EXPOSE 8080
+
 # Specify the command to run on container start
 CMD ["java", "-jar", "app.jar"]
