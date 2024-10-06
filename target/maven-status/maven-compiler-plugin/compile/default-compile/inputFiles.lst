@@ -1,7 +1,0 @@
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/LogManagementUtilityToolApplication.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/Repository/LogRepository.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/Service/LogService.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/controllers/Index.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/controllers/LogController.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/controllers/LogsByparams.java
-/workspaces/Log-Management-Utility-Tool/src/main/java/com/project/logmanagementutilitytool/entity/LogEntity.java
