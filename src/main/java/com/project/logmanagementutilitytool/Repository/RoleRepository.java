@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface RoleRepository extends MongoRepository<RoleEntity, String> {
     void deleteByRoleName(String roleName);
 
+    RoleEntity getRoleEntityByRoleName(String rolename);
+
     // No custom queries needed here
 }

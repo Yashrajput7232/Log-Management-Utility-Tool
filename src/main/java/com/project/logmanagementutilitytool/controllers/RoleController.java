@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class RoleController {
     @Autowired
     RoleService roleService;
-    @GetMapping("/getallRoles")
+    @GetMapping
     public ResponseEntity<?> getAllRoles(){
         return roleService.getAllRoles();
     }
 
-    @PostMapping("/addRole")
+    @PostMapping
     public ResponseEntity<?> addRole(@RequestBody RoleEntity roleEntity)
     {
         System.out.println("In adding Role");
@@ -26,9 +26,12 @@ public class RoleController {
 
     }
 
-    @DeleteMapping("/delete/{Rolename}")
-    public ResponseEntity<?> deleteRole(@PathVariable String Rolename) {
-        return roleService.deleteRole(Rolename);
+    @DeleteMapping
+    public ResponseEntity<?> deleteRole(@RequestParam(required = false) String Rolename, @RequestParam(required = false) String id) {
+        if (Rolename == null && id == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return roleService.deleteRole(Rolename, id);
     }
 
 }

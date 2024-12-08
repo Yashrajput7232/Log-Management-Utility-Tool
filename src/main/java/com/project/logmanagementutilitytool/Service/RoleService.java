@@ -27,8 +27,18 @@ public class RoleService {
         RoleEntity savedRole = roleRepository.save(roleEntity);
         return ResponseEntity.ok(savedRole);
     }
-    public  ResponseEntity<RoleEntity> deleteRole(String name){
-        roleRepository.deleteByRoleName(name);
+
+    public ResponseEntity<RoleEntity> deleteRole(String name, String id) {
+        if (id != null) {
+            roleRepository.deleteById(id);
+        } else if (name != null) {
+            roleRepository.deleteByRoleName(name);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok().build();
+    }
+    public RoleEntity getRole(String rolename) {
+        return roleRepository.getRoleEntityByRoleName(rolename);
     }
 }

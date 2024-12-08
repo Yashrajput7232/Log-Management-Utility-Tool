@@ -29,10 +29,9 @@ public class RoleEntity {
         this.roleName = roleName;
     }
 
-
-
-    public RoleEntity(String id, String roleName) {
-        this.id = id;
-        this.roleName = roleName;
+    public RoleEntity(String name) {
+        this.roleName = name;
+    }
+    public RoleEntity() {
     }
 }
