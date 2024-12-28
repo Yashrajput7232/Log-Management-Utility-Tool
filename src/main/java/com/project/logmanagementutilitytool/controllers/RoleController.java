@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/role")
-public class RoleController {
+public class    RoleController {
     @Autowired
     RoleService roleService;
     @GetMapping

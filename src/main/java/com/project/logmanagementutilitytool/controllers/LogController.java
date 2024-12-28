@@ -21,7 +21,7 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Page<LogEntity>> getAllLogs(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
