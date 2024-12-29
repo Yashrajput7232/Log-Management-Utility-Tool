@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim AS build
+FROM openjdk:23-jdk-slim AS build
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven
